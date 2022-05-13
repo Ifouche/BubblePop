@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pop4.wav-7f3bb35f13f3ab1e664b7b9b03c9e481.sample"
+
+[deps]
+
+source_file="res://SFX/Pop4.wav"
+dest_files=[ "res://.import/Pop4.wav-7f3bb35f13f3ab1e664b7b9b03c9e481.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

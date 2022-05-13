@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pop6.wav-fa65c312d63f655d390bc20b7788b35b.sample"
+
+[deps]
+
+source_file="res://SFX/Pop6.wav"
+dest_files=[ "res://.import/Pop6.wav-fa65c312d63f655d390bc20b7788b35b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

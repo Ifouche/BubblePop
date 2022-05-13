@@ -1,0 +1,99 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Sprites/Toucan_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Stand.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Cannon.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 128, 102 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 256, 102, 128, 102 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 384, 102, 128, 102 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 384, 0, 128, 102 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 102, 128, 102 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 102, 128, 102 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 256, 0, 128, 102 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 128, 102 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 128, 102 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 3 ), SubResource( 2 ) ],
+"loop": false,
+"name": "look",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 5 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 5 ) ],
+"loop": false,
+"name": "flap",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 7 ), SubResource( 9 ), SubResource( 7 ), SubResource( 8 ), SubResource( 7 ) ],
+"loop": false,
+"name": "blink",
+"speed": 5.0
+} ]
+
+[node name="Player" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="AnimationTimer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+
+[node name="Aimer" type="Position2D" parent="."]
+
+[node name="Cannon" type="Sprite" parent="Aimer"]
+texture = ExtResource( 4 )
+
+[node name="Tucan" type="AnimatedSprite" parent="."]
+position = Vector2( -57, 0 )
+frames = SubResource( 10 )
+animation = "look"
+frame = 5
+playing = true
+
+[node name="Stand" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[connection signal="timeout" from="AnimationTimer" to="." method="_on_AnimationTimer_timeout"]
+[connection signal="animation_finished" from="Tucan" to="." method="_on_Tucan_animation_finished"]
