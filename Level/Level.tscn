@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Backgrounds/backgroundColorForest_Adapted.png" type="Texture" id=1]
 [ext_resource path="res://Static Body/Wall.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sprites/BubbleSpriteSheet2.png" type="Texture" id=5]
 [ext_resource path="res://Level/Level.gd" type="Script" id=6]
+[ext_resource path="res://Bubbles/BubbleSpawner.gd" type="Script" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -257,6 +258,8 @@ position = Vector2( 0, -5 )
 tile_set = SubResource( 11 )
 cell_size = Vector2( 32, 27 )
 cell_half_offset = 0
+collision_layer = 4
+collision_mask = 2
 format = 1
 tile_data = PoolIntArray( 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 6, 2, 0, 7, 2, 0, 8, 2, 0, 9, 2, 0, 10, 2, 0, 11, 2, 0, 12, 2, 0, 13, 2, 0, 14, 2, 0, 15, 2, 0, 16, 2, 0, 17, 2, 0, 65536, 2, 0, 65553, 2, 0 )
 
@@ -295,3 +298,8 @@ default_color = Color( 0.0117647, 0.0117647, 0.027451, 1 )
 [node name="Ceiling" parent="." instance=ExtResource( 3 )]
 position = Vector2( -33, -1 )
 rotation = -1.5708
+
+[node name="BubbleSpawner" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[connection signal="fire_bubble" from="Player" to="." method="_on_Player_fire_bubble"]

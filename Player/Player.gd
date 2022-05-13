@@ -5,6 +5,7 @@ const MOVEMENT_SPEED:int = 1;
 
 var animations = ["look", "blink", "flap"];
 
+signal fire_bubble;
 
 func _ready():
 	randomize();
@@ -19,7 +20,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("Nudge Right"):
 		rotate_cannon(1.0);
 	if event.is_action_pressed("Fire"):
-		print("FIRE");
+		fire();
 
 func _on_AnimationTimer_timeout():
 	if $Tucan.animation == "idle":
@@ -33,3 +34,6 @@ func rotate_cannon(input:float) :
 	var rotation = $Aimer.rotation_degrees + input * MOVEMENT_SPEED;
 	if abs(rotation) < MAX_ANGLE:
 		$Aimer.rotation_degrees = rotation;
+		
+func fire():
+	emit_signal("fire_bubble", $Aimer.rotation);
