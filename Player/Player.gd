@@ -37,3 +37,4 @@ func rotate_cannon(input:float) :
 		
 func fire():
 	emit_signal("fire_bubble", $Aimer.rotation);
+

@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "Bubble",
+"language": "GDScript",
+"path": "res://Bubbles/Bubble.gd"
+} ]
+_global_script_class_icons={
+"Bubble": ""
+}
+
 [application]
 
 config/name="Bubble Popper"
