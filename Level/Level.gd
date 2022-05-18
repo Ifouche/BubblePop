@@ -8,6 +8,8 @@ onready var Player = $Player;
 onready var NextBubble = $NextBubble;
 
 var PlayerLocation:Vector2;
+var checked_bubbles = [];
+var matching_bubbles = [];
 
 const MAP_X = 18;
 const MAP_Y = 15;
@@ -43,3 +45,34 @@ func set_bubble(bubble: Bubble):
 	var pos = Bubbles.world_to_map(bubble.global_position);
 	Bubbles.set_cell(pos.x, pos.y, bubble.type);
 	bubble.queue_free();
+	matching_bubbles = [pos];
+	checked_bubbles = [];
+	$RemovalTimer.start();
+	check_for_removal(pos);
+		
+func check_for_removal(pos):
+	checked_bubbles.append(pos);
+	var neighbors = get_neighbors(pos);
+	for n in neighbors:
+		if not checked_bubbles.has(pos+n) && Bubbles.get_used_cells().has(pos+n):
+			if Bubbles.get_cellv(pos) == Bubbles.get_cellv(pos+n):
+				matching_bubbles.append(pos+n);
+				check_for_removal(pos+n);
+
+func get_neighbors(pos):
+	if int(pos.y) % 2:
+		return [
+			Vector2(0,-1),Vector2(1,-1),
+			Vector2(-1,0),Vector2(1,0),
+			Vector2(0,1),Vector2(1,1)
+		];
+	return [
+		Vector2(1,0),Vector2(-1,0),
+		Vector2(-1,-1),Vector2(0,-1),
+		Vector2(-1,1),Vector2(0,1)
+	];
+
+func _on_RemovalTimer_timeout():
+	if matching_bubbles.size() > 2:
+		for bubble in matching_bubbles:
+			Bubbles.set_cellv(bubble, -1);
