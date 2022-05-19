@@ -253,6 +253,7 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 6 )
+number_of_bubble_types = 2
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 0, -5 )
